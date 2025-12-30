@@ -100,7 +100,7 @@
 #                                                                           #
 # Report bugs/suggestions at https://github.com/sirfz/allprotection.tcl     #
 #                                                                           #
-# Copyright © 2005-2016 Opposing (aka Sir_Fz)                               #
+# Copyright Â© 2005-2016 Opposing (aka Sir_Fz)                               #
 #                                                                           #
 # This program is free software; you can redistribute it and/or modify      #
 # it under the terms of the GNU General Public License as published by      #
@@ -182,7 +182,7 @@ if {$::numversion >= $_EGGDROP_1_8} {
 # Do you want your bot to queue bans? set here the time in seconds before dumping bans:
 # NOTE: 0 means the bot will set the ban immediately
 # The modes-per-line setting in eggdrop.conf is the number of modes allowed per command.
-set apqueue(time) 1
+set apqueue(time) 0
 
 # Set here the numbers of last bans to be removed on full banlist? (0: remove none)
 # NOTE: Full banlist is when the channel has max-bans bans set. (from eggdrop.conf)
@@ -192,18 +192,18 @@ variable removebs 20
 # 0: Never
 # 1: Only when banlist is full (determined by max-bans)
 # 2: always
-set banthruX(do) 0
+set banthruX(do) 1
 
 # If banthruX is 1/2, set the command here to ban through services:
 # %nick = nickname
 # %ban = ban-mask
-set banthruX(cmd) "privmsg X :ban %chan %ban %btime %level %reason"
+set banthruX(cmd) "PRIVMSG Q@CServe.quakener.org :TEMPBAN %chan %ban %btime %reason"
 
 # If banthruX is 1/2, set here the default level to be used on all channels
 lappend ap:udefs {ap:level 75}
 
 # Do you want AP to log all the kicks/bans done by the bot? (0: no, 1: daily, 2: forever)
-set logkbs(do) 0
+set logkbs(do) 2
 
 # If yes, set the logfile here: (will be reset everyday at 3:00 a.m.)
 set logkbs(file) "logs/aplogs.log"
@@ -219,14 +219,14 @@ variable exmptype {ops voices +fmo|+fmo}
 # Set here the handles of the users you want to notify when the bots locks a channel
 # for mass (botnet) flood.
 # example: set notifyusers {TheOwner LamerDude}
-variable notifyusers {}
+variable notifyusers {RohitS5612 Dev_Mojang noxir}
 
 # Set here the notice to be sent to the channel when the bot locks the channel because of a
 # Botnet flood. leave "" if you don't wish the notice to be sent.
 set btclocked(lnotc) "Channel has been locked due to flood, sorry for any inconvenience this may have caused."
 
 # What info do you wanna add to your kick message?
-# After setting this variable, you can use $kckcount(form) to add a these info to the bot's
+# After setting this variable, you can use $kckcount(form) to add this info to the bot's
 # kick msg.
 ### NOTE:
 ## %kcount = number of kicks.
@@ -235,16 +235,16 @@ set btclocked(lnotc) "Channel has been locked due to flood, sorry for any inconv
 ## %date = kick date
 ## %rate = offenses in seconds, bad words/nicks/idents/chans/ads or clone/clones (depends on type of offense)
 ### PS: You can use the above directly in the kick message (not only here)
-set kckcount(form) "(%rate) :: \[%date\] - Banned %btime minutes ·%kcount·"
+set kckcount(form) "(%rate) :: \[%date\] - Banned %btime minutes Â·%kcountÂ·"
 
 # Set the file in which the number of kicks will be stored.
 set kckcount(file) "scripts/kcount.txt"
 
 # Do you want the bot to check for bad nicks/idents and clones when it first joins the channels
-# and gains op ? (0: no , 1: yes)
-# NOTE: This may be CPU intensive if your bot is on big channels or on alot of channels.
+# and gains op? (0: no , 1: yes)
+# NOTE: This may be CPU-intensive if your bot is on big channels or on a lot of channels.
 # NOTE: This may (probably will) cause huge self-lag on the bot.
-set cbcd(check) 0
+set cbcd(check) 1
 
 # If cbcd(check) is set to 1, change this if you want the bot to only check for certain types
 # of protection in the nicklist.
@@ -2895,3 +2895,4 @@ if {[llength [channels]] == 0 && [llength [userlist]] == 0} {
     load
 }
 }
+
