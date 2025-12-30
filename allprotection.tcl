@@ -223,7 +223,7 @@ variable notifyusers {RohitS5612 Dev_Mojang noxir}
 
 # Set here the notice to be sent to the channel when the bot locks the channel because of a
 # Botnet flood. leave "" if you don't wish the notice to be sent.
-set btclocked(lnotc) "Channel has been locked due to flood, sorry for any inconvenience this may have caused."
+set btclocked(lnotc) "Channel has been locked due to flooding, sorry for any inconvenience this may have caused."
 
 # What info do you wanna add to your kick message?
 # After setting this variable, you can use $kckcount(form) to add this info to the bot's
@@ -235,7 +235,7 @@ set btclocked(lnotc) "Channel has been locked due to flood, sorry for any inconv
 ## %date = kick date
 ## %rate = offenses in seconds, bad words/nicks/idents/chans/ads or clone/clones (depends on type of offense)
 ### PS: You can use the above directly in the kick message (not only here)
-set kckcount(form) "(%rate) :: \[%date\] - Banned for %btime minutes ·%kcount·"
+set kckcount(form) "(%rate) :: \[%date\] - Banned for %btime minutes Kicked ·%kcount· times"
 
 # Set the file in which the number of kicks will be stored.
 set kckcount(file) "scripts/kcount.txt"
@@ -262,12 +262,12 @@ set cbcd(chans) "*"
 
 # Your service's chanserv nick.
 # example: set serv(nick) "ChanServ" or "PRIVMSG X@channels.undernet.org"
-set serv(nick) "ChanServ"
+set serv(nick) "Q@CServe.quakenet.org"
 
 # Chanserv deop command.
 # use %nick for the nick you want to deop and %chan for the channel name.
 # example: set serv(deop) "deop %chan %nick"
-set serv(command) "deop %chan %nick"
+set serv(command) "CHANLEV %chan %nick -aop"
 
 # Set the time in seconds to wait before reseting the punishment monitor:
 # Note: this setting means the bot will apply the punishment steps on each user
@@ -347,7 +347,7 @@ set kline(time) 30
 
 # use .chanset #channel ap:textl <lines>:<seconds> <btime> <pmeth> <btype> (in DCC, 0:0 to disable)
 # Set default rate here:
-lappend ap:udefs {ap:textl "5:2 60 k:kb 2"}
+lappend ap:udefs {ap:textl "5:3 60 w:k:b:kb:kil:kl 3"}
 
 # Text flood (lines) kick msg.
 set textl(kmsg) "Text flood detected. $kckcount(form)"
@@ -358,19 +358,19 @@ set textl(wmsg) "Warning: You've triggered text flood (lines) protection, slow d
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
 # Text flood (lines) kline mask type.
-set textl(ktype) 2
+set textl(ktype) 4
 
 # Text flood (lines) kline/kill reason.
-set textl(klmsg) "Text flooding is not permissable on this network."
+set textl(klmsg) "Text flooding is not permitted on this network."
 
 # Text flood (lines) kline time (seconds or minutes depends on your ircd).
-set textl(ktime) 0
+set textl(ktime) 30
 
 #
 ## 2 ## Text flood (chars)
 #
 
-lappend ap:udefs {ap:textc "215:3 120 kb 2"}
+lappend ap:udefs {ap:textc "215:3 120 w:k:b:kb:kil:kl 3"}
 
 set textc(kmsg) "Excess chars detected. $kckcount(form)"
 
@@ -378,17 +378,17 @@ set textc(wmsg) "Warning: You've triggered text flood (chars) protection, decrea
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set textc(ktype) 2
+set textc(ktype) 4
 
 set textc(klmsg) "Text flooding (chars) is not permissable on this network."
 
-set textc(ktime) 0
+set textc(ktime) 30
 
 #
 ## 3 ## Notice flood (lines)
 #
 
-lappend ap:udefs {ap:notcl "1:3 120 kb 2"}
+lappend ap:udefs {ap:notcl "1:3 120 w:k:b:kb:kil:kl 3"}
 
 set notcl(kmsg) "Notice not allowed. $kckcount(form)"
 
@@ -396,17 +396,17 @@ set notcl(wmsg) "Warning: you've triggered notice flood (lines) protection, slow
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set notcl(ktype) 2
+set notcl(ktype) 4
 
 set notcl(klmsg) "Notice flooding is not permissable on this network."
 
-set notcl(ktime) 0
+set notcl(ktime) 30
 
 #
 ## 4 ## Notice flood (chars)
 #
 
-lappend ap:udefs {ap:notcc "200:3 180 kb 2"}
+lappend ap:udefs {ap:notcc "200:3 180 w:k:b:kb:kil:kl 3"}
 
 set notcc(kmsg) "Excess chars (notice) detected. $kckcount(form)"
 
@@ -414,11 +414,11 @@ set notcc(wmsg) "Warning: you've triggered notice flood (chars) protection, decr
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set notcc(ktype) 2
+set notcc(ktype) 4
 
 set notcc(klmsg) "Notice flooding (chars) is not permissable on this network."
 
-set notcc(ktime) 0
+set notcc(ktime) 30
 
 ###################
 #      TEXT       #
@@ -430,7 +430,7 @@ set notcc(ktime) 0
 
 # Use .chanset #channel ap:caps <percent>:<line-length> <btime> <pmeth> <btype> (in DCC, 0:0 to disable)
 # Set default rate here:
-lappend ap:udefs {ap:caps "60:90 120 kb 2"}
+lappend ap:udefs {ap:caps "60:90 120 w:k:b:kb:kil:kl 3"}
 
 set capsp(kmsg) "Excess CAPS detected. $kckcount(form)"
 
@@ -438,17 +438,17 @@ set capsp(wmsg) "Warning: You've triggered caps flood protection, release your c
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set capsp(ktype) 2
+set capsp(ktype) 4
 
 set capsp(klmsg) "Caps flooding is not permissable on this network."
 
-set capsp(ktime) 0
+set capsp(ktime) 30
 
 #
 ## 6 ## Text repeating.
 #
 
-lappend ap:udefs {ap:repeatl "3:10 60 k:kb 2"}
+lappend ap:udefs {ap:repeatl "3:10 60 w:k:b:kb:kil:kl 3"}
 
 ## Text repeating Kick on how many consecutive repeated letters?
 ## Example: if this is set to 5 then the bot will kick any user who types (example):
@@ -456,7 +456,7 @@ lappend ap:udefs {ap:repeatl "3:10 60 k:kb 2"}
 # Hello!!!!!!!!! (5 and more consecutive ! marks)
 ## Use .chanset #channel ap:repeatc <number-of-letters> <btime> <pmeth> <btype> (in DCC, 0 to disable)
 # Set default value here:
-lappend ap:udefs {ap:repeatc "25 30 w:k:kb 2"}
+lappend ap:udefs {ap:repeatc "25 30 w:k:b:kb:kil:kl 3"}
 
 set repeatf(kmsg) "Text repeating detected. $kckcount(form)"
 
@@ -466,11 +466,11 @@ set repeatf(wmsg) "Warning: You've triggered %type repeating protection, stop re
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set repeatf(ktype) 2
+set repeatf(ktype) 4
 
-set repeatf(klmsg) "Constant repeating is not permissable on this network."
+set repeatf(klmsg) "Constant repeating is not permissible on this network."
 
-set repeatf(ktime) 0
+set repeatf(ktime) 30
 
 #
 ## 7 ## Control codes.
@@ -481,7 +481,7 @@ set repeatf(ktime) 0
 # Then 35 (or more) characters affected by Reverse or Bold or Underline or Color
 # will be considered an offence.
 # Set default rate here:
-lappend ap:udefs {ap:codes "r:35 b:80 u:80 c:80 90 kb 2"}
+lappend ap:udefs {ap:codes "r:35 b:80 u:80 c:80 90 w:k:b:kb:kil:kl 3"}
 
 set codesf(kmsg) "Excess codes detected. $kckcount(form)"
 
@@ -489,11 +489,11 @@ set codesf(wmsg) "Warning: You've triggered control codes protection, release yo
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set codesf(ktype) 2
+set codesf(ktype) 4
 
 set codesf(klmsg) "Excess use of control codes is not permissable on this network."
 
-set codesf(ktime) 0
+set codesf(ktime) 30
 
 #
 ## 8 ## Advertising.
@@ -503,18 +503,18 @@ set codesf(ktime) 0
 
 # Use .chanset #channel ap:adv + <btime> <pmeth> <btype> (to enable)
 # set default value here: (+ enabled, - disabled)
-lappend ap:udefs {ap:adv "+ 180 kb 2"}
+lappend ap:udefs {ap:adv "+ 180 w:k:b:kb:kil:kl 3"}
 
 # Set here the string you want to exempt (don't consider as spam):
 # Note: %chan = current channel. Also, you can change these for every channel via DCC
 # using the .ap:add command. (no wildcards used)
 set adexempts(global) { %chan www.egghelp.org }
 
-set adwords(global) { "*join *" "*plz visit*" }
+set adwords(global) { "*plz join *" "*plz visit*" }
 
 set adv(kmsg) "Advertising detected. $kckcount(form)"
 
-set adv(wmsg) "Warning: You've triggered adverting protection, advertisements are not allowed."
+set adv(wmsg) "Warning: You've triggered advertising protection, advertisements are not allowed."
 
 # ANTI SPAM BOT: (NOTE: Some networks may not allow such bots.)
 
@@ -549,7 +549,7 @@ set antispam(realname) "AllProtection Anti-Spam"
 set antispam(banall) 1
 
 # Exempt list from greets:
-set greetexempts(global) { *example*!*@* *!*example*@*.example.net }
+set greetexempts(global) {}
 
 # If you want your bot to reply to users with random message, set messages here:
 set antispam(r) {
@@ -575,7 +575,7 @@ set antispam(t) {
 }
 
 # Do you want the bot to msg users on join? (leave "" if no)
-set antispam(greet) "Hello %nick, checking for spam. Please do not reply..."
+set antispam(greet) "Hello %nick, checking for DNSBLs and spam... Please do not reply..."
 
 # Stop greeting after how many joins in secs:
 set antispam(jprot) 4:2
@@ -585,11 +585,11 @@ set antispam(mprot) 8:4
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set adv(ktype) 2
+set adv(ktype) 4
 
 set adv(klmsg) "Constant advertising is not permissable on this network."
 
-set adv(ktime) 0
+set adv(ktime) 30
 
 #
 ## 9 ## Swearing.
@@ -2895,6 +2895,7 @@ if {[llength [channels]] == 0 && [llength [userlist]] == 0} {
     load
 }
 }
+
 
 
 
