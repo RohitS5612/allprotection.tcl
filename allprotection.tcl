@@ -374,13 +374,13 @@ lappend ap:udefs {ap:textc "215:3 120 w:k:b:kb:kil:kl 3"}
 
 set textc(kmsg) "Excess chars detected. $kckcount(form)"
 
-set textc(wmsg) "Warning: You've triggered text flood (chars) protection, decrease your text legnth."
+set textc(wmsg) "Warning: You've triggered text flood (chars) protection, decrease your text length."
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
 set textc(ktype) 4
 
-set textc(klmsg) "Text flooding (chars) is not permissable on this network."
+set textc(klmsg) "Text flooding (chars) is not permitted on this network."
 
 set textc(ktime) 30
 
@@ -398,7 +398,7 @@ set notcl(wmsg) "Warning: you've triggered notice flood (lines) protection, slow
 
 set notcl(ktype) 4
 
-set notcl(klmsg) "Notice flooding is not permissable on this network."
+set notcl(klmsg) "Notice flooding is not permitted on this network."
 
 set notcl(ktime) 30
 
@@ -416,7 +416,7 @@ set notcc(wmsg) "Warning: you've triggered notice flood (chars) protection, decr
 
 set notcc(ktype) 4
 
-set notcc(klmsg) "Notice flooding (chars) is not permissable on this network."
+set notcc(klmsg) "Notice flooding (chars) is not permitted on this network."
 
 set notcc(ktime) 30
 
@@ -440,7 +440,7 @@ set capsp(wmsg) "Warning: You've triggered caps flood protection, release your c
 
 set capsp(ktype) 4
 
-set capsp(klmsg) "Caps flooding is not permissable on this network."
+set capsp(klmsg) "Caps flooding is not permitted on this network."
 
 set capsp(ktime) 30
 
@@ -527,11 +527,11 @@ lappend ap:udefs {ap:antispam "- + 10 10"}
 # AntiSpamBot basic settings
 # You can edit all these settings as you wish
 # example: set antispam(nick) AntiSpamBot
-set antispam(nick) $::altnick
-set antispam(altnick) ${::altnick}1
+set antispam(nick) ChanSpam
+set antispam(altnick) ChannelSpamingProtection
 # Antispam ident & real name
-set antispam(user) AP
-set antispam(realname) "AllProtection Anti-Spam"
+set antispam(user) chanspam
+set antispam(realname) "Request me in #ChanBots"
 
 ##
 # The following settings specify the desired vhost for your forked Antispam bot.
@@ -575,7 +575,7 @@ set antispam(t) {
 }
 
 # Do you want the bot to msg users on join? (leave "" if no)
-set antispam(greet) "Hello %nick, checking for DNSBLs and spam... Please do not reply..."
+set antispam(greet) "Hello %nick, checking for DNSBLs, spam, etc... Please do not reply to this message."
 
 # Stop greeting after how many joins in secs:
 set antispam(jprot) 4:2
@@ -595,7 +595,7 @@ set adv(ktime) 30
 ## 9 ## Swearing.
 #
 
-lappend ap:udefs {ap:swear "+ 120 kb 2"}
+lappend ap:udefs {ap:swear "+ 120 w:k:b:kb:kil:kl 3"}
 
 set bwords(global) {
     *fuck*
@@ -627,11 +627,11 @@ set swear(wmsg) "Warning: You've triggered swearing protection, cussing is prohi
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set swear(ktype) 2
+set swear(ktype) 4
 
-set swear(klmsg) "Swearing is not permissable on this network."
+set swear(klmsg) "Swearing is not permissible on this network."
 
-set swear(ktime) 0
+set swear(ktime) 30
 
 #
 ## 8-9 ## Swearing/Advertising in part/quit messages
@@ -647,7 +647,7 @@ lappend ap:udefs {ap:pqsadv "s:1 a:1"}
 ## 10 ## CTCP/CTCR flood
 #
 
-lappend ap:udefs {ap:ctcps "2:30 180 kb 2"}
+lappend ap:udefs {ap:ctcps "2:30 180 w:k:b:kb:kil:kl 3"}
 
 set ctcpf(kmsg) "CTCP flood detected. $kckcount(form)"
 
@@ -655,11 +655,11 @@ set ctcpf(wmsg) "Warning: You've triggered CTCP/CTCR flood protection, decrease 
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set ctcpf(ktype) 2
+set ctcpf(ktype) 4
 
 set ctcpf(klmsg) "CTCP/CTCR floods are not permissable on this network."
 
-set ctcpf(ktime) 0
+set ctcpf(ktime) 30
 
 ###################
 #    TAKEOVER     #
@@ -669,7 +669,7 @@ set ctcpf(ktime) 0
 ## 11 ## Mass deop.
 #
 
-lappend ap:udefs {ap:massd "5:1 30 kb 2"}
+lappend ap:udefs {ap:massd "5:1 30 k:b:kb:kil:kl 3"}
 
 # Mass deop: deop abuser ? (0: no , 1: yes)
 set massdeop(deop) 1
@@ -680,17 +680,17 @@ set massdeop(wmsg) "Warning: You've triggered the mass deop protection, do not r
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set massdeop(ktype) 2
+set massdeop(ktype) 4
 
 set massdeop(klmsg) "Mass deops are not allowed on this network."
 
-set massdeop(ktime) 0
+set massdeop(ktime) 30
 
 #
 ## 12 ## Mass kick.
 #
 
-lappend ap:udefs {ap:massk "8:2 30 kb 2"}
+lappend ap:udefs {ap:massk "8:2 30 k:b:kb:kil:kl 3"}
 
 # Mass kick: deop abuser ? (0: no , 1: yes)
 set masskick(deop) 1
@@ -701,17 +701,17 @@ set masskick(wmsg) "Warning: You've triggered mass kick protection, do not repea
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set masskick(ktype) 2
+set masskick(ktype) 4
 
 set masskick(klmsg) "Mass kicks are prohibited on this network."
 
-set masskick(ktime) 0
+set masskick(ktime) 30
 
 #
 ## 13 ## Mass ban (bans).
 #
 
-lappend ap:udefs {ap:massb "18:2 30 kb 2"}
+lappend ap:udefs {ap:massb "18:2 30 k:b:kb:kil:kl 3"}
 
 # Mass ban (bans) deop abuser ? (1: yes , 0: no)
 set massb(deop) 1
@@ -722,11 +722,11 @@ set massb(wmsg) "Warning: You've triggered mass ban protection, do not repeat th
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set massb(ktype) 2
+set massb(ktype) 4
 
 set massb(klmsg) "Mass banning (bans) is prohibited on this network."
 
-set massb(ktime) 0
+set massb(ktime) 30
 
 #
 ## 14 ## Channel limit.
@@ -745,7 +745,7 @@ lappend ap:udefs {ap:limit 8}
 ## 15 ## Join flood.
 #
 
-lappend ap:udefs {ap:cjoin "3:2 120 kb 2"}
+lappend ap:udefs {ap:cjoin "3:2 120 k:b:kb:kil:kl 3"}
 
 # Join flood: Check for join flood from same idents as well? (0: no, 1: yes)
 set joinflood(checkident) 1
@@ -754,7 +754,7 @@ set joinflood(checkident) 1
 set joinflood(lockchan) 1
 
 # Join flood: If lock channel is enable, what modes ?
-set joinflood(lockmode) "mR-k clone.join.flood"
+set joinflood(lockmode) "imMrs-k clone.join.flood"
 
 # Join flood: lock time in seconds.
 set joinflood(locktime) 45
@@ -765,11 +765,11 @@ set joinflood(wmsg) "Warning: you've triggered join flood protection, further of
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set joinflood(ktype) 2
+set joinflood(ktype) 4
 
-set joinflood(klmsg) "Join floods are not permissable on this network."
+set joinflood(klmsg) "Join floods are not permitted on this network."
 
-set joinflood(ktime) 0
+set joinflood(ktime) 30
 
 #
 ## 16 ## Part msg flood.
@@ -777,14 +777,14 @@ set joinflood(ktime) 0
 
 # Use .chanset #channel ap:partmsgs <message-length> <btime> <pmeth> <btype> (in DCC, 0 to disable)
 # Set default value here:
-lappend ap:udefs {ap:partmsgs "180 120 kb 2"}
+lappend ap:udefs {ap:partmsgs "180 120 k:b:kb:kil:kl 3"}
 
 # Also, you can ban if excess codes are used in a part msg:
 # Use .chanset #channel ap:partmsgc r:<n> b:<n> u:<n> c:<n> <btime> <pmeth> <btype> (in DCC)
 # Note: check codes protection to understand how codes checking work.
 # r = reverse, b = bold, u = underline and c = colors.
 # Set default rate here:
-lappend ap:udefs {ap:partmsgc "r:35 b:35 u:35 c:35 30 kb 2"}
+lappend ap:udefs {ap:partmsgc "r:35 b:35 u:35 c:35 30 kb 3"}
 
 set pmsgf(kmsg) "Part msg flood detected. $kckcount(form)"
 
@@ -792,11 +792,11 @@ set pmsgf(wmsg) "Warning: You've triggered part msg flood protection, decrease t
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set pmsgf(ktype) 2
+set pmsgf(ktype) 4
 
-set pmsgf(klmsg) "Part msg floods are not permissable on this network."
+set pmsgf(klmsg) "Part msg floods are not permitted on this network."
 
-set pmsgf(ktime) 0
+set pmsgf(ktime) 30
 
 #
 ## 17 ## Revolving door.
@@ -805,29 +805,29 @@ set pmsgf(ktime) 0
 # Use .chanset #channel ap:revdoor <seconds> <btime> <pmeth> <btype> (in DCC)
 # example: setting this to 3 will make the bot ban whoever joins and parts/quits in 3 or less seconds.
 # Set default value here:
-lappend ap:udefs {ap:revdoor "3 120 kb 2"}
+lappend ap:udefs {ap:revdoor "3 120 k:b:kb:kil:kl 3"}
 
 set revdoor(kmsg) "Join-part revolving door attempt detected. $kckcount(form)"
 
 # Part messages that should not be considered as revdoor: (can use wildcards)
 # Example: set revdoor(exempt) {"Registered."}
-set revdoor(exempt) {}
+set revdoor(exempt) {Registered}
 
-set revdoor(wmsg) "Warning! you have triggered revolving-door protection, do not join-part channels."
+set revdoor(wmsg) "Warning! You have triggered revolving-door protection, do not join-part channels."
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set revdoor(ktype) 2
+set revdoor(ktype) 4
 
 set revdoor(klmsg) "Revolving-door bots are not allowed on this network."
 
-set revdoor(ktime) 0
+set revdoor(ktime) 30
 
 #
 ## 18 ## Nick flood.
 #
 
-lappend ap:udefs {ap:nickf "4:12 60 w:k:kb 2"}
+lappend ap:udefs {ap:nickf "4:12 60 w:k:b:kb:kil:kl 3"}
 
 set nickflood(kmsg) "Nick flood detected. $kckcount(form)"
 
@@ -835,11 +835,11 @@ set nickflood(wmsg) "Warning: You've triggered nick flood protection, slow down 
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set nickflood(ktype) 2
+set nickflood(ktype) 4
 
-set nickflood(klmsg) "Nick floods are not permissable on this network."
+set nickflood(klmsg) "Nick floods are not permitted on this network."
 
-set nickflood(ktime) 0
+set nickflood(ktime) 30
 
 #
 ## 19 ## Clones.
@@ -848,7 +848,7 @@ set nickflood(ktime) 0
 # Use .chanset #channel ap:clones <clones-number> <btime> <pmeth> <btype> (in DCC)
 # Note: This will be the number of clones that triggers punishment.
 # Set default value here:
-lappend ap:udefs {ap:clones "8 120 kb 2"}
+lappend ap:udefs {ap:clones "8 120 w:k:b:kb:kil:kl 3"}
 
 set eclones(kmsg) "Excess clones detected. $kckcount(form)"
 
@@ -861,11 +861,11 @@ set eclones(caw) 60
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set eclones(ktype) 2
+set eclones(ktype) 4
 
 set eclones(klmsg) "Excess clones are not allowed on this network."
 
-set eclones(ktime) 0
+set eclones(ktime) 30
 
 #
 ## 20 ## Bad nick.
@@ -873,7 +873,7 @@ set eclones(ktime) 0
 
 # Use .chanset #channel ap:bnicks + <btime> <pmeth> <btype> (in DCC to enable)
 # Set default value here: (+ enabled, - disabled)
-lappend ap:udefs {ap:bnicks "+ 120 kb 2"}
+lappend ap:udefs {ap:bnicks "+ 120 k:b:kb:kil:kl 3"}
 
 set bnicks(global) {
     *porno*
@@ -893,17 +893,17 @@ set bnicks(global) {
 
 set bnick(kmsg) "Bad nick detected. $kckcount(form)"
 
-set bnick(wmsg) "Warning! you are using a bad nick, type /nick <nick> to change it."
+set bnick(wmsg) "Warning! You are using a bad nick, type /nick <nick> to change it."
 
 set bnick(caw) 60
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set bnick(ktype) 2
+set bnick(ktype) 4
 
 set bnick(klmsg) "Bad nicks are not allowed on this network."
 
-set bnick(ktime) 0
+set bnick(ktime) 30
 
 #
 ## 21 ## Random drones.
@@ -913,10 +913,10 @@ set bnick(ktime) 0
 # Set default value here: (+ enabled, - disabled)
 # If you set <pmeth> to a positive-integer then the bot will only kick the drone once.
 # So if the drone rejoins within this amount of seconds it won't be kicked again.
-lappend ap:udefs {ap:drones "+ 180 45 2"}
+lappend ap:udefs {ap:drones "+ 180 45 3"}
 
-# Random drones: What masks to exempt? (remember to change these or remoce them)
-set droneexempts(global) { *example1*!*@* *!*example2*@* *!*@example3.net }
+# Random drones: What masks to exempt? (remember to change these or remove them)
+set droneexempts(global) { quakenet.org *.quakenet.org }
 
 set drone(kmsg) "Possible random drone detected. $kckcount(form)"
 
@@ -924,11 +924,11 @@ set drone(wmsg) "Warning: You've triggered random drones protection, change your
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set drone(ktype) 2
+set drone(ktype) 4
 
 set drone(klmsg) "Random drones are not allowed on this network."
 
-set drone(ktime) 0
+set drone(ktime) 30
 
 #
 ## 22 ## Bad ident.
@@ -936,7 +936,7 @@ set drone(ktime) 0
 
 # Use .chanset #channel ap:bidents + <btime> <pmeth> <btype> (in DCC to enable)
 # Set default value here: (+ enabled, - disabled)
-lappend ap:udefs {ap:bidents "+ 120 kb 2"}
+lappend ap:udefs {ap:bidents "+ 120 k:b:kb:kil:kl 10"}
 
 set bidents(global) {
     *porno*
@@ -956,17 +956,17 @@ set bidents(global) {
 
 set bident(kmsg) "Bad ident detected. $kckcount(form)"
 
-set bident(wmsg) "Warning! you're using a bad ident. Disconnect, change it and then connect again."
+set bident(wmsg) "Warning! You're using a bad ident. Disconnect, change it, and then connect again."
 
 set bident(caw) 60
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set bident(ktype) 2
+set bident(ktype) 4
 
 set bident(klmsg) "Bad idents are not allowed on this network."
 
-set bident(ktime) 0
+set bident(ktime) 30
 
 #
 ## 23 ## Bad chans/Excess chans.
@@ -975,12 +975,12 @@ set bident(ktime) 0
 # Use .chanset #channel ap:bchans + <btime> <pmeth> <btype> <scan-time> (in DCC to enable)
 # <scan-time> is the time in minutes in which the bot will scan the channel for users in bad chans. (0 disable)
 # Set default value here: (+ enabled, - disabled)
-lappend ap:udefs {ap:bchans "- 90 kb 2 0"}
+lappend ap:udefs {ap:bchans "- 90 w:k:b:kb:kil:kl 3 0"}
 
 # For excess channels use:
 # .chanset #channel ap:echans <excess-chan-number> <btime> <pmeth> <btype> <scan-time> (in DCC to enable)
 # if <excess-chan-number> is 0, then it is disabled.
-lappend ap:udefs {ap:echans "0 60 w:kb 2 0"}
+lappend ap:udefs {ap:echans "0 60 w:k:b:kb:kil:kl 3 0"}
 
 # Set default global badchan list here:
 set bchans(global) { #example1 #example2 #example3 }
@@ -1008,11 +1008,11 @@ set bchan(ewmsg) "Warning: You're on excess chans (%echan), maximum allowed is %
 
 ## Edit the following only if you choose a punish method above 5 (oper commands):
 
-set bchan(ktype) 2
+set bchan(ktype) 4
 
 set bchan(klmsg) "Joining bad channels is prohibited on this network."
 
-set bchan(ktime) 0
+set bchan(ktime) 30
 
 #
 ## 24 ## Bad CTCP reply
@@ -1020,7 +1020,7 @@ set bchan(ktime) 0
 
 # Use .chanset #channel ap:bctcrs + <btime> <pmeth> <btype> <scan-time> (in DCC to enable)
 # Set default value here: (+ enabled, - disabled)
-lappend ap:udefs {ap:bctcrs "- 120 kb 2 0"}
+lappend ap:udefs {ap:bctcrs "- 120 k:kb 2 0"}
 
 # Use .chanset #channel ap:ctcpchecks <ctcp-types>
 # Set default CTCP replies to check for: (example: "VERSION TIME FINGER")
@@ -1057,37 +1057,37 @@ set bctcr(ktime) 0
 
 # Use .chanset #channel ap:btextl <lines>:<seconds> <lockmode> <locktime> (in DCC, 0:0 to disable)
 # Set default rate here:
-lappend ap:udefs {ap:btextl "15:7 mR-k lines.flood 60"}
+lappend ap:udefs {ap:btextl "15:7 DimMrs-k lines.flood 60"}
 
 #
 ## 2 ## Botnet Text flood (chars).
 #
 
-lappend ap:udefs {ap:btextc "550:3 mR-k chars.flood 60"}
+lappend ap:udefs {ap:btextc "550:3 DimMrs-k chars.flood 60"}
 
 #
 ## 3 ## Botnet Notice flood (lines).
 #
 
-lappend ap:udefs {ap:bnotcl "4:2 mR-k lines.flood 60"}
+lappend ap:udefs {ap:bnotcl "4:2 DimMrs-k lines.flood 60"}
 
 #
 ## 4 ## Botnet Notice flood (chars).
 #
 
-lappend ap:udefs {ap:bnotcc "500:3 mR-k chars.flood 60"}
+lappend ap:udefs {ap:bnotcc "500:3 DimMrs-k chars.flood 60"}
 
 #
 ## 5 ## Botnet CTCP/CTCR flood.
 #
 
-lappend ap:udefs {ap:bctcp "4:60 mR-k ctcp.flood 60"}
+lappend ap:udefs {ap:bctcp "4:60 DimMrs-k ctcp.flood 60"}
 
 #
 ## 6 ## Botnet join flood.
 #
 
-lappend ap:udefs {ap:massjoin "9:3 mR-k join.flood 60"}
+lappend ap:udefs {ap:massjoin "9:3 DimMrs-k join.flood 60"}
 
 #
 ## 7 ## Botnet revolving door flood.
@@ -1095,7 +1095,7 @@ lappend ap:udefs {ap:massjoin "9:3 mR-k join.flood 60"}
 
 ## Note: ap:revdoor must be set for this to work.
 
-lappend ap:udefs {ap:brevdoor "5:3 mR-k revdoor.flood 60"}
+lappend ap:udefs {ap:brevdoor "5:3 DimMrs-k revdoor.flood 60"}
 
 #
 ## 8 ## Botnet part msg flood.
@@ -1103,19 +1103,19 @@ lappend ap:udefs {ap:brevdoor "5:3 mR-k revdoor.flood 60"}
 
 ## Note: ap:partmsgs or ap:partmsgc (or both) must be enabled for this to work.
 
-lappend ap:udefs {ap:bpartmsg "5:3 mR-k partmsg.flood 60"}
+lappend ap:udefs {ap:bpartmsg "5:3 DimMrs-k partmsg.flood 60"}
 
 #
 ## 9 ## Botnet Nick flood.
 #
 
-lappend ap:udefs {ap:bnickf "5:30 mR-k nick.flood 60"}
+lappend ap:udefs {ap:bnickf "5:30 DimMrs-k nick.flood 60"}
 
 #
 ## 10 ## Botnet Codes flood.
 #
 
-lappend ap:udefs {ap:bcodes "25:3 mR-k codes.flood 60"}
+lappend ap:udefs {ap:bcodes "25:3 DimMrs-k codes.flood 60"}
 
 ###########################
 #   PRIVATE PROTECTIONS   #
@@ -2895,6 +2895,7 @@ if {[llength [channels]] == 0 && [llength [userlist]] == 0} {
     load
 }
 }
+
 
 
 
