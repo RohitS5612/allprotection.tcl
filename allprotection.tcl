@@ -2897,3 +2897,4 @@ if {[llength [channels]] == 0 && [llength [userlist]] == 0} {
 }
 
 
+
