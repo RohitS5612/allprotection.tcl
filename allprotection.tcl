@@ -186,18 +186,18 @@ set apqueue(time) 0
 
 # Set here the numbers of last bans to be removed on full banlist? (0: remove none)
 # NOTE: Full banlist is when the channel has max-bans bans set. (from eggdrop.conf)
-variable removebs 20
+variable removebs 45
 
 # Do you want the bot to ban through services?
 # 0: Never
 # 1: Only when banlist is full (determined by max-bans)
 # 2: always
-set banthruX(do) 1
+set banthruX(do) 2
 
 # If banthruX is 1/2, set the command here to ban through services:
 # %nick = nickname
 # %ban = ban-mask
-set banthruX(cmd) "PRIVMSG Q@CServe.quakener.org :TEMPBAN %chan %ban %btime %reason"
+set banthruX(cmd) "PRIVMSG Q@CServe.quakenet.org :TEMPBAN %chan %ban %btime %reason"
 
 # If banthruX is 1/2, set here the default level to be used on all channels
 lappend ap:udefs {ap:level 75}
@@ -235,7 +235,7 @@ set btclocked(lnotc) "Channel has been locked due to flood, sorry for any inconv
 ## %date = kick date
 ## %rate = offenses in seconds, bad words/nicks/idents/chans/ads or clone/clones (depends on type of offense)
 ### PS: You can use the above directly in the kick message (not only here)
-set kckcount(form) "(%rate) :: \[%date\] - Banned %btime minutes ·%kcount·"
+set kckcount(form) "(%rate) :: \[%date\] - Banned for %btime minutes ·%kcount·"
 
 # Set the file in which the number of kicks will be stored.
 set kckcount(file) "scripts/kcount.txt"
@@ -2895,4 +2895,5 @@ if {[llength [channels]] == 0 && [llength [userlist]] == 0} {
     load
 }
 }
+
 
